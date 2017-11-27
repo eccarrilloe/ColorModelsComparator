@@ -23,6 +23,8 @@ To run the project, do the followings steps:
 4. To switch to Palette view, use SPACE key.
 5. To switch between color models in the Palette view, use the keys '1', '2', and '3'.
 
-  1. RGB Color Model
-  2. HSV Color Model
-  3. HSL Color Model
+### Color Models
+
+1. RGB Color Model
+2. HSV Color Model
+3. HSL Color Model
