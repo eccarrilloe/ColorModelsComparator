@@ -34,7 +34,7 @@ void setup() {
   state = 0;
   colorModel = 0;
   
-  logo = new Logo("ea.png");
+  logo = new Logo("wolkswagen.png");
   imageAnalyzerRGB = new ImageAnalyzer(logo, 0);
   imageAnalyzerHSV = new ImageAnalyzer(logo, 1);
   imageAnalyzerHSL = new ImageAnalyzer(logo, 2);

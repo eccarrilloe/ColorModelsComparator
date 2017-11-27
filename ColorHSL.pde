@@ -83,7 +83,7 @@ public class ColorHSL extends ColorModel implements Comparable<ColorHSL> {
     colorText += "HUE: " + Float.toString(this.h);
     colorText += " - SAT: " + Float.toString(this.s);
     colorText += " - LIGHT: " + Float.toString(this.l);
-    colorText += " - COUNT: " + Float.toString(((float) this.count) / ((float) totalPixels) * 100);
+    colorText += " - %: " + Float.toString(((float) this.count) / ((float) totalPixels) * 100);
     colorText += "%";
     
     fill(Config.textColor);

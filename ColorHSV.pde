@@ -104,7 +104,7 @@ public class ColorHSV extends ColorModel implements Comparable<ColorHSV> {
     colorText += "HUE: " + Float.toString(this.h);
     colorText += " - SAT: " + Float.toString(this.s);
     colorText += " - VAL: " + Float.toString(this.v);
-    colorText += " - COUNT: " + Float.toString(((float) this.count) / ((float) totalPixels) * 100);
+    colorText += " - %: " + Float.toString(((float) this.count) / ((float) totalPixels) * 100);
     colorText += "%";
 
     fill(Config.textColor);

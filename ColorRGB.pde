@@ -57,7 +57,7 @@ public class ColorRGB extends ColorModel implements Comparable<ColorRGB> {
     colorText += "RED: " + Float.toString(this.r * 255);
     colorText += " - GREEN: " + Float.toString(this.g * 255);
     colorText += " - BLUE: " + Float.toString(this.b * 255);
-    colorText += " - COUNT: " + Float.toString(((float) this.count) / ((float) totalPixels) * 100);
+    colorText += " - %: " + Float.toString(((float) this.count) / ((float) totalPixels) * 100);
     colorText += "%";
     fill(Config.textColor);
     text(colorText, 70, i * 60 + 30);
