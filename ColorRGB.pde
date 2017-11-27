@@ -45,20 +45,21 @@ public class ColorRGB extends ColorModel implements Comparable<ColorRGB> {
   }
   
   @Override
-  public void printColor(int i) {
+  public void printColor(int i, int totalPixels) {
     if (this.count < 1000)
       return;
 
     String colorText = "";
 
     fill(this.r * 255, this.g * 255, this.b * 255);
-    rect(0, i * 50, 50, 50);
+    rect(10, i * 60 + 10, 50, 50);
     
     colorText += "RED: " + Float.toString(this.r * 255);
     colorText += " - GREEN: " + Float.toString(this.g * 255);
     colorText += " - BLUE: " + Float.toString(this.b * 255);
-    colorText += " - COUNT: " + Integer.toString(this.count);
+    colorText += " - COUNT: " + Float.toString(((float) this.count) / ((float) totalPixels) * 100);
+    colorText += "%";
     fill(Config.textColor);
-    text(colorText, 60, i * 50 + 25);
+    text(colorText, 70, i * 60 + 30);
   }
 }

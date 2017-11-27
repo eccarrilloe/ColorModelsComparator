@@ -26,12 +26,17 @@ public class ColorConversor {
     if (delta == 0) {
       h = 0;
     } else if (max == r) {
-      h = ((60 * (((g - b) / delta) % 6)) + 360) % 360;
+      h = (g - b) / delta;
     } else if (max == g) {
-      h = (60 * ((b - r) / delta) + 2) % 360;
+      h = 2.0 + (b - r) / delta;
     } else if (max == b) {
-      h = (60 * ((r - g) / delta) + 4) % 360;
+      h = 4.0 + (r - g) / delta;
     }
+    
+    h *= 60;
+    
+    if (h < 60)
+      h += 360;
     
     return new ColorHSV(h, s, v);
   }

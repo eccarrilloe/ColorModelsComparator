@@ -12,8 +12,10 @@ public class ImageAnalyzer<T extends Comparable<T>> {
   private int colorModel;
   private List<T> colors;
   private final ColorConversor conversor = new ColorConversor();
+  public long time;
   
   public ImageAnalyzer(Logo logo, int colorModel) {
+    this.time = 0;
     this.logo = logo;
     this.colorModel = colorModel;
     this.colors = new ArrayList();
@@ -72,12 +74,24 @@ public class ImageAnalyzer<T extends Comparable<T>> {
   
   public void draw() {
     background(Config.backgroundColor);
+    String text = "COLOR MODEL: ";
+    
+    if (this.colorModel == 0)
+      text += "RGB (Red, Green, Blue) - ";
+    else if (this.colorModel == 1)
+      text += "HSV (Hue, Saturation, Value) - ";
+    else if (this.colorModel == 2)
+      text += "HSL (Hue, Saturation, Lightness) - ";
+    
+    text += "RUNTIME: " + Float.toString(this.time) + " ms";
+    fill(Config.textColor);
+    text(text, 70, 50);
     
     for (int i = 0; i < (this.colors.size() < 5 ? this.colors.size() : 5); i++) {
       ColorModel currentColor = (ColorModel) this.colors.get(i);
       stroke(Config.strokeColor);
       
-      currentColor.printColor(i);
+      currentColor.printColor(i + 1, this.logo.getImage().pixels.length);
     }
   }
 }

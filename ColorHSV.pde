@@ -37,18 +37,18 @@ public class ColorHSV extends ColorModel implements Comparable<ColorHSV> {
     ColorHSV otherColor = (ColorHSV) other;
     boolean isEqual = true;
 
-    isEqual = isEqual && abs(this.h - otherColor.h) < Config.colorError;
-    isEqual = isEqual && abs(this.s - otherColor.s) < Config.colorError;
-    isEqual = isEqual && abs(this.v - otherColor.v) < Config.colorError;
+    isEqual = isEqual && abs(this.h - otherColor.h) < (Config.colorError / 360.0);
+    isEqual = isEqual && abs(this.s - otherColor.s) < (Config.colorError / 100.0);
+    isEqual = isEqual && abs(this.v - otherColor.v) < (Config.colorError / 100.0);
 
     return isEqual;
   }
   
   @Override
-  public void printColor(int i) {
+  public void printColor(int i, int totalPixels) {
     if (this.count < 1000)
       return;
-
+    
     int hi = ((int) Math.floor(this.h / 60)) % 6;
     float f = ((h / 60) % 6) - hi;
     float p = this.v * (1 - this.s);
@@ -66,7 +66,7 @@ public class ColorHSV extends ColorModel implements Comparable<ColorHSV> {
         b = p;
         break;
       case 1:
-        r = 1;
+        r = q;
         g = this.v;
         b = p;
         break;
@@ -99,13 +99,15 @@ public class ColorHSV extends ColorModel implements Comparable<ColorHSV> {
     String colorText = "";
 
     fill(r * 255, g * 255, b * 255);
-    rect(0, i * 50, 50, 50);
+    rect(10, i * 60 + 10, 50, 50);
     
     colorText += "HUE: " + Float.toString(this.h);
     colorText += " - SAT: " + Float.toString(this.s);
     colorText += " - VAL: " + Float.toString(this.v);
-    colorText += " - COUNT: " + Integer.toString(this.count);
+    colorText += " - COUNT: " + Float.toString(((float) this.count) / ((float) totalPixels) * 100);
+    colorText += "%";
+
     fill(Config.textColor);
-    text(colorText, 60, i * 50 + 25);
+    text(colorText, 70, i * 60 + 30);
   }
 }

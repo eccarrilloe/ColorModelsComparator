@@ -37,18 +37,18 @@ public class ColorHSL extends ColorModel implements Comparable<ColorHSL> {
     ColorHSL otherColor = (ColorHSL) other;
     boolean isEqual = true;
 
-    isEqual = isEqual && abs(this.h - otherColor.h) < Config.colorError;
-    isEqual = isEqual && abs(this.s - otherColor.s) < Config.colorError;
-    isEqual = isEqual && abs(this.l - otherColor.l) < Config.colorError;
+    isEqual = isEqual && abs(this.h - otherColor.h) < (Config.colorError / 360.0);
+    isEqual = isEqual && abs(this.s - otherColor.s) < (Config.colorError / 100.0);
+    isEqual = isEqual && abs(this.l - otherColor.l) < (Config.colorError / 100.0);
 
     return isEqual;
   }
   
   @Override
-  public void printColor(int i) {
+  public void printColor(int i, int totalPixels) {
     if (this.count < 1000)
-      return;
-      
+      return;  
+    
     float c = (1 - abs((2 * this.l) - 1)) * this.s;
     float x = c * (1 - abs((this.h / 60) % 2 - 1));
     float m = this.l - (c / 2);
@@ -78,14 +78,16 @@ public class ColorHSL extends ColorModel implements Comparable<ColorHSL> {
     String colorText = "";
 
     fill(r * 255, g * 255, b * 255);
-    rect(0, i * 50, 50, 50);
+    rect(10, i * 60 + 10, 50, 50);
     
     colorText += "HUE: " + Float.toString(this.h);
     colorText += " - SAT: " + Float.toString(this.s);
     colorText += " - LIGHT: " + Float.toString(this.l);
-    colorText += " - COUNT: " + Integer.toString(this.count);
+    colorText += " - COUNT: " + Float.toString(((float) this.count) / ((float) totalPixels) * 100);
+    colorText += "%";
+    
     fill(Config.textColor);
-    text(colorText, 60, i * 50 + 25);
+    text(colorText, 70, i * 60 + 30);
    
   }
 }

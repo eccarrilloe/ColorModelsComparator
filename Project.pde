@@ -34,14 +34,22 @@ void setup() {
   state = 0;
   colorModel = 0;
   
-  logo = new Logo("unal.png");
+  logo = new Logo("ea.png");
   imageAnalyzerRGB = new ImageAnalyzer(logo, 0);
   imageAnalyzerHSV = new ImageAnalyzer(logo, 1);
   imageAnalyzerHSL = new ImageAnalyzer(logo, 2);
 
+  imageAnalyzerRGB.time = System.currentTimeMillis();
   imageAnalyzerRGB.analyzeImage();
+  imageAnalyzerRGB.time = System.currentTimeMillis() - imageAnalyzerRGB.time;
+  
+  imageAnalyzerHSV.time = System.currentTimeMillis();
   imageAnalyzerHSV.analyzeImage();
+  imageAnalyzerHSV.time = System.currentTimeMillis() - imageAnalyzerHSV.time;
+  
+  imageAnalyzerHSL.time = System.currentTimeMillis();
   imageAnalyzerHSL.analyzeImage();
+  imageAnalyzerHSL.time = System.currentTimeMillis() - imageAnalyzerHSL.time;
 }
 
 void draw() {
@@ -73,7 +81,7 @@ void draw() {
 
 void keyPressed() {
   if (key == ' ') {
-    state = (state + 1) % 2;  
+    state = (state + 1) % 2;    
   } else{
     switch(key) {
       case '1':
