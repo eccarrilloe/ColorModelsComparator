@@ -10,8 +10,7 @@ import java.util.*;
 /*
  * State:
  * 0. Show Original Image
- * 1. Show Color Analysis
- * 2. Show Color Scheme
+ * 1. Show Color Palette
  */
 int state;
 
